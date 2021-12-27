@@ -1,5 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;500&family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap'); 
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;500&family=Montserrat&display=swap'); 
 
 * {
   margin: 0;
@@ -34,7 +35,7 @@ body {
   padding: 20px;
   width: 20px;
   height: 20px;
-  box-shadow: 3px 4px 5px #101d30 ;
+  box-shadow: 3px 4px 5px #101d30;
 }
 
 #black {
@@ -51,6 +52,13 @@ body {
 
 #color4 {
   background-color: blue;
+}
+
+#paragraph {
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  margin-top: 10px;
+  padding: 10px;
 }
 
 .buttons {
@@ -73,10 +81,10 @@ body {
   width: 80px;
   height: 22px;
   border-color: #1d3557;
-  box-shadow: 3px 4px 5px #101d30 ;
+  box-shadow: 3px 4px 5px #101d30;
 }
 
-#clear-board, #change-colors, #generate-board {
+#clear-board , #change-colors , #generate-board {
   font-family: 'Montserrat', sans-serif;
   font-size: 15px;
   font-weight: 500;
@@ -85,10 +93,10 @@ body {
   border-radius: 8px;
   color: #f1faee;
   background-color: #457b9d;
-  box-shadow: 3px 4px 5px #101d30 ;
+  box-shadow: 3px 4px 5px #101d30;
 }
 
-#clear-board:hover, #change-colors:hover, #generate-board:hover {
+#clear-board:hover , #change-colors:hover , #generate-board:hover {
   background-color: #1d3557;
   transition: 0.3s;
 }
