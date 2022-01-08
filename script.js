@@ -1,16 +1,22 @@
-const pixels = document.querySelectorAll('.pixel');
-
-// Primeira cor selecionada: black.
-for (let i = 0; i < pixels.length; i += 1) {
-  pixels[i].addEventListener('click', function () {
-    pixels[i].style.backgroundColor = 'black';
-  });
-}
-
 const black = document.getElementById('black');
 const color2 = document.getElementById('color2');
 const color3 = document.getElementById('color3');
 const color4 = document.getElementById('color4');
+
+const clearBoardButton = document.getElementById('clear-board');
+const input = document.getElementById('board-size');
+const buttonVqv = document.getElementById('generate-board');
+
+// Primeira cor selecionada: black.
+function changeBlack() {
+  const pixels = document.querySelectorAll('.pixel');
+  for (let i = 0; i < pixels.length; i += 1) {
+    pixels[i].addEventListener('click', function () {
+      pixels[i].style.backgroundColor = 'black';
+    });
+  }
+}
+changeBlack();
 
 // Remover a classe select e adicionar a classe select ao elemento que receber o evento (clique)
 function changeSelected(event) {
@@ -24,16 +30,23 @@ color2.addEventListener('click', changeSelected);
 color3.addEventListener('click', changeSelected);
 color4.addEventListener('click', changeSelected);
 
+// Botão Mudar Cores
+const buttonChangeColors = document.getElementById('change-colors');
+function changePalette () {
+  color2.style.backgroundColor = '#' + (Math.floor(Math.random() * 1000000));
+  color3.style.backgroundColor = '#' + (Math.floor(Math.random() * 1000000));
+  color4.style.backgroundColor = '#' + (Math.floor(Math.random() * 1000000));
+}
+buttonChangeColors.addEventListener('click', changePalette);
+
 // Ao clicar no pixel alterar a cor para a mesma que foi selecionada na paleta
 color2.style.backgroundColor = 'red';
 color3.style.backgroundColor = 'green';
 color4.style.backgroundColor = 'blue';
-
-color2.style.backgroundColor = '#' + (Math.floor(Math.random() * 1000000));
-color3.style.backgroundColor = '#' + (Math.floor(Math.random() * 1000000));
-color4.style.backgroundColor = '#' + (Math.floor(Math.random() * 1000000));
+changePalette ();
 
 function changeColor2() {
+  const pixels = document.querySelectorAll('.pixel');
   for (let i = 0; i < pixels.length; i += 1) {
     pixels[i].addEventListener('click', function () {
       pixels[i].style.backgroundColor = color2.style.backgroundColor;
@@ -42,6 +55,7 @@ function changeColor2() {
 }
 
 function changeColor3() {
+  const pixels = document.querySelectorAll('.pixel');
   for (let i = 0; i < pixels.length; i += 1) {
     pixels[i].addEventListener('click', function () {
       pixels[i].style.backgroundColor = color3.style.backgroundColor;
@@ -50,6 +64,7 @@ function changeColor3() {
 }
 
 function changeColor4() {
+  const pixels = document.querySelectorAll('.pixel');
   for (let i = 0; i < pixels.length; i += 1) {
     pixels[i].addEventListener('click', function () {
       pixels[i].style.backgroundColor = color4.style.backgroundColor;
@@ -60,26 +75,18 @@ function changeColor4() {
 color2.addEventListener('click', changeColor2);
 color3.addEventListener('click', changeColor3);
 color4.addEventListener('click', changeColor4);
-
-function changeBlack() {
-  for (let i = 0; i < pixels.length; i += 1) {
-    pixels[i].addEventListener('click', function () {
-      pixels[i].style.backgroundColor = 'black';
-    });
-  }
-}
 black.addEventListener('click', changeBlack);
 
-const clearBoardButton = document.getElementById('clear-board');
-const input = document.getElementById('board-size');
-const buttonVqv = document.getElementById('generate-board');
-
-clearBoardButton.addEventListener('click', function () {
+// Botão limpar board
+function clearBoard() {
+  const pixels = document.querySelectorAll('.pixel');
   for (let i = 0; i < pixels.length; i += 1) {
     pixels[i].style.backgroundColor = 'white';
   }
-});
+}
+clearBoardButton.addEventListener('click', clearBoard);
 
+// Limpar o board antes de redimensionar
 function removeAllPixels() {
   const pixels = document.querySelectorAll('.pixel');
   for (const p of pixels) {
@@ -87,6 +94,7 @@ function removeAllPixels() {
   }
 }
 
+// Redimensionar o board
 function changeSizeBoard() {
   removeAllPixels();
 
@@ -112,76 +120,21 @@ function changeSizeBoard() {
   pixelsBoard.style.height = (parseInt(pixelsBoard.style.height) + n * 42) + 'px';
 
   const nBoard = n * n;
+
   for (let i = 0; i < nBoard; i += 1) {
     const pixelAdded = document.createElement('div');
     pixelAdded.className = 'pixel';
     pixelsBoard.appendChild(pixelAdded);
   }
+
   // Primeira cor selecionada: black.
-  const pixels = document.querySelectorAll('.pixel');
-  for (let i = 0; i < pixels.length; i += 1) {
-    pixels[i].addEventListener('click', function () {
-      pixels[i].style.backgroundColor = 'black';
-    });
-  }
+  changeBlack();
 
-  // Ao clicar no pixel alterar a cor para a mesma que foi selecionada na paleta
-  color2.style.backgroundColor = 'red';
-  color3.style.backgroundColor = 'green';
-  color4.style.backgroundColor = 'blue';
-
-  color2.style.backgroundColor = '#' + (Math.floor(Math.random() * 1000000));
-  color3.style.backgroundColor = '#' + (Math.floor(Math.random() * 1000000));
-  color4.style.backgroundColor = '#' + (Math.floor(Math.random() * 1000000));
-
-  function change2() {
-    for (let i = 0; i < pixels.length; i += 1) {
-      pixels[i].addEventListener('click', function () {
-        pixels[i].style.backgroundColor = color2.style.backgroundColor;
-      });
-    }
-  }
-  function change3() {
-    for (let i = 0; i < pixels.length; i += 1) {
-      pixels[i].addEventListener('click', function () {
-        pixels[i].style.backgroundColor = color3.style.backgroundColor;
-      });
-    }
-  }
-  function change4() {
-    for (let i = 0; i < pixels.length; i += 1) {
-      pixels[i].addEventListener('click', function () {
-        pixels[i].style.backgroundColor = color4.style.backgroundColor;
-      });
-    }
-  }
-
-  color2.addEventListener('click', change2);
-  color3.addEventListener('click', change3);
-  color4.addEventListener('click', change4);
-  function blackFirst() {
-    for (let i = 0; i < pixels.length; i += 1) {
-      pixels[i].addEventListener('click', function () {
-        pixels[i].style.backgroundColor = 'black';
-      });
-    }
-  }
-  black.addEventListener('click', blackFirst);
-
-  clearBoardButton.addEventListener('click', function () {
-    for (let i = 0; i < pixels.length; i += 1) {
-      pixels[i].style.backgroundColor = 'white';
-    }
-  });
+  color2.addEventListener('click', changeColor2);
+  color3.addEventListener('click', changeColor3);
+  color4.addEventListener('click', changeColor4);
+  black.addEventListener('click', changeBlack);
+  
+  clearBoardButton.addEventListener('click', clearBoard);
 }
 buttonVqv.addEventListener('click', changeSizeBoard);
-
-const buttonChangeColors = document.getElementById('change-colors');
-
-function changePalette () {
-  color2.style.backgroundColor = '#' + (Math.floor(Math.random() * 1000000));
-  color3.style.backgroundColor = '#' + (Math.floor(Math.random() * 1000000));
-  color4.style.backgroundColor = '#' + (Math.floor(Math.random() * 1000000));
-}
-
-buttonChangeColors.addEventListener('click', changePalette);
